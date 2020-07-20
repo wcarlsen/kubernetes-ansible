@@ -1,0 +1,9 @@
+---
+# Kubernetes
+- name: Resetting Kubernetes worker node
+  shell: kubeadm reset -f
+
+- name: Join worker nodes to Kubernetes cluster
+  shell: |
+    cat "{{ join_command.stdout }}" | tail -2 > out.sh
+    sh out.sh
